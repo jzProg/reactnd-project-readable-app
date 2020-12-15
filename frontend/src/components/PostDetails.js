@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Button from 'react-bootstrap/Button';
+import AddComment from './modals/AddComment';
 
-class PostDetails extends Component {
+function PostDetails() {
 
-  state = {
+  const [modalShow, setModalShow] = React.useState(false);
 
-  }
-
-  render() {
-    return (
-      <div>Post Details</div>
-    )
-  }
-
+  return (
+    <div>Post Details
+     <AddComment show={modalShow} onHide={() => setModalShow(false)}/>
+     <Button variant="primary" onClick={() => setModalShow(true)}>ADD NEW POST</Button>
+    </div>
+  )
 }
 
 export default PostDetails;
