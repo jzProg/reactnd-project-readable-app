@@ -1,21 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import AddComment from './components/modals/AddComment';
 
-class App extends Component {
+function App() {
 
-  state = {
+  const [modalShow, setModalShow] = React.useState(false);
 
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-         Root
-        </header>
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <header className="App-header">
+       Root
+       <AddComment show={modalShow} onHide={() => setModalShow(false)}/>
+       <Button variant="primary" onClick={() => setModalShow(true)}>showModal</Button>
+      </header>
+    </div>
+  );
 }
 
 export default App;
