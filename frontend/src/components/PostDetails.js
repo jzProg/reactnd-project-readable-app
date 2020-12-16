@@ -10,7 +10,7 @@ function PostDetails() {
   return (
     <Route exact path='/:category/:postId'>Post Details
      <AddComment show={modalShow} onHide={() => setModalShow(false)}/>
-     <Button variant="primary" onClick={() => setModalShow(true)}>ADD NEW POST</Button>
+     <Button variant="primary" onClick={() => setModalShow(true)}>ADD NEW COMMENT</Button>
     </Route>
   )
 }
