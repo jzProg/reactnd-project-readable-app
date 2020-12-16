@@ -1,9 +1,11 @@
 import React from 'react';
 
-function Header(props) {
+function Header({ categories, onSelect }) {
 
   return (
-      <div>Header</div>
+      <ul>
+      { categories.map(category => <li key={category} style={{ cursor: 'pointer' }} onClick={() => onSelect(category)}> { category } </li>)}
+      </ul>
     )
 
 }

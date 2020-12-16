@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import CommentForm from '../CommentForm';
+import InputForm from '../InputForm';
 
 function AddComment(props) {
   return (
@@ -12,7 +12,7 @@ function AddComment(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-       <CommentForm/>
+       <InputForm/>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

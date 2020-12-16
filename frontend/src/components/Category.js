@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, withRouter } from 'react-router-dom';
 
 class Category extends Component {
 
@@ -8,10 +9,10 @@ class Category extends Component {
 
   render() {
     return (
-      <div>Category</div>
+      <Route exact path='/:category'>Category</Route>
     )
   }
 
 }
 
-export default Category;
+export default withRouter(Category);

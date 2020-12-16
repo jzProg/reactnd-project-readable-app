@@ -1,11 +1,12 @@
 import React from 'react';
 
-function PostList(props) {
+function PostList({ posts, onSelect }) {
 
   return (
-      <div>PostList</div>
+    <ul>
+    { posts.map(post => <li key={post.id} style={{ cursor: 'pointer' }} onClick={() => onSelect(post)}> post #{ post.id } </li>)}
+    </ul>
     )
-
 }
 
 export default PostList;

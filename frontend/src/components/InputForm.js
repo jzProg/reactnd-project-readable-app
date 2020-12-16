@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 
-function CommentForm(props) {
+function InputForm(props) {
   return (
     <Form>
       <Form.Group controlId="commentForm.ControlInput">
@@ -16,4 +16,4 @@ function CommentForm(props) {
   )
 }
 
-export default CommentForm;
+export default InputForm;
