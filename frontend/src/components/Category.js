@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PostList from './PostList';
 
 class Category extends Component {
 
@@ -8,11 +10,23 @@ class Category extends Component {
   }
 
   render() {
+    const { posts, match } = this.props;
+    const  { category } = match.params;
+    const postsByCategory = posts.filter(post => post.category === category);
+
     return (
-      <div>Category</div>
+      <div>
+        <PostList posts={postsByCategory} onSelect={this.toPost}/>
+      </div>
     )
   }
 
 }
 
-export default withRouter(Category);
+function mapStateToProps({ posts }) {
+  return {
+    posts: Object.values(posts)
+  }
+}
+
+export default connect(mapStateToProps)(withRouter(Category));
