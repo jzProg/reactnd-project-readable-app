@@ -1,23 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Root from './components/Root';
 import Category from './components/Category';
 import PostDetails from './components/PostDetails';
+import { fetchCategories } from './utils/api';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+class App extends Component {
 
-  return (
-   <Router>
-    <div className="App">
-      <header className="App-header">
-       <Root/>
-       <Category/>
-       <PostDetails/>
-      </header>
-    </div>
-   </Router>
-  );
+  componentDidMount() {
+    fetchCategories().then(res => console.log(res));
+  }
+
+  render() {
+    return (
+     <Router>
+      <div className="App">
+        <header className="App-header">
+         <Root/>
+         <Category/>
+         <PostDetails/>
+        </header>
+      </div>
+     </Router>
+    );
+  }
 }
 
 export default App;
