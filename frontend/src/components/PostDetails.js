@@ -1,18 +1,40 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import AddComment from './modals/AddComment';
+import Post from './Post';
 
-function PostDetails() {
+class PostDetails extends Component {
 
-  const [modalShow, setModalShow] = React.useState(false);
+  state = {
+    modalShow : false
+  }
 
-  return (
-    <Route exact path='/:category/:postId'>Post Details
-     <AddComment show={modalShow} onHide={() => setModalShow(false)}/>
-     <Button variant="primary" onClick={() => setModalShow(true)}>ADD NEW COMMENT</Button>
-    </Route>
-  )
+  setModalShow = (flag) => {
+    this.setState({ modalShow: flag });
+  }
+
+  render() {
+    const { posts, match } = this.props;
+    const { modalShow, setModalShow } = this.state;
+    const  { postId, category } = match.params;
+    const post = posts.filter(post => post.id === postId && post.category === category)?.[0];
+
+    return (
+      <>
+       { post && (<Post post={post} />) }
+       <AddComment show={modalShow} onHide={() => this.setModalShow(false)}/>
+       <Button variant="primary" onClick={() => this.setModalShow(true)}>ADD NEW COMMENT</Button>
+      </>
+    )
+  }
 }
 
-export default PostDetails;
+function mapStateToProps({ posts }) {
+  return {
+    posts: Object.values(posts)
+  }
+}
+
+export default connect(mapStateToProps)(withRouter(PostDetails));

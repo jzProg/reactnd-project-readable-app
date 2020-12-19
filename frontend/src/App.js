@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Root from './components/Root';
 import Category from './components/Category';
 import PostDetails from './components/PostDetails';
-import { fetchCategories } from './utils/api';
+import LoadingBar from 'react-redux-loading';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
-
-  componentDidMount() {
-    fetchCategories().then(res => console.log(res));
-  }
 
   render() {
     return (
      <Router>
       <div className="App">
+        <LoadingBar/>
         <header className="App-header">
-         <Root/>
-         <Category/>
-         <PostDetails/>
+         <Route exact path="/" component={Root}/>
+         <Route exact path='/:category' component={Category}/>
+         <Route exact path='/:category/:postId' component={PostDetails}/>
         </header>
       </div>
      </Router>

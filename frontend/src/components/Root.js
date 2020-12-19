@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
-import { Route, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Header from './Header';
 import PostList from './PostList';
 import NewPost from './modals/NewPost';
 import Button from 'react-bootstrap/Button';
+import { fetchInitialData } from '../actions/shared';
 
 class Root extends Component {
 
   state = {
-    categories: ['react', 'reactNative', 'redux'],
-    posts: [{ id: '1', category: 'react'}, { id: '2', category: 'reactNative'}, { id: '3', category: 'redux'}, { id: '4', category: 'react'}],
-    showNewPostModal: false
+    showNewPostModal: false,
+    load: false
+  }
+
+  componentDidMount() {
+    this.props.dispatch(fetchInitialData()).then(() => {
+      this.setState({ load: true });
+    });
   }
 
   toggleModal = (flag) => {
@@ -18,7 +25,7 @@ class Root extends Component {
   }
 
   toCategory = (category) => {
-    this.props.history.push(`/${category}`);
+    this.props.history.push(`/${category.path}`);
   }
 
   toPost = (post) => {
@@ -27,16 +34,26 @@ class Root extends Component {
   }
 
   render() {
-    return (
-      <Route exact path="/">
-        <Header categories={this.state.categories} onSelect={this.toCategory}/>
-        <PostList posts={this.state.posts} onSelect={this.toPost}/>
+    const { categories, posts } = this.props;
+
+    return (<>
+    { this.state.load && (
+      <div>
+        <Header categories={categories} onSelect={this.toCategory}/>
+        <PostList posts={posts} onSelect={this.toPost}/>
         <NewPost show={this.state.showNewPostModal} onHide={() => this.toggleModal(false)}/>
         <Button variant="primary" onClick={() => this.toggleModal(true)}>ADD NEW POST</Button>
-      </Route>
-    )
+      </div>
+     )}
+   </>)
   }
-
 }
 
-export default withRouter(Root);
+function mapStateToProps({ categories, posts }) {
+  return {
+    categories: Object.values(categories),
+    posts: Object.values(posts)
+  }
+}
+
+export default connect(mapStateToProps)(withRouter(Root));
