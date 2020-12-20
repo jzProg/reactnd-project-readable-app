@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Header from './Header';
 import PostList from './PostList';
 import { fetchInitialData } from '../actions/shared';
+import { getPosts } from '../reducers/posts';
 
 class Root extends Component {
 
@@ -37,7 +38,7 @@ class Root extends Component {
 function mapStateToProps({ categories, posts }) {
   return {
     categories: Object.values(categories),
-    posts: Object.values(posts)
+    posts: getPosts(posts)
   }
 }
 

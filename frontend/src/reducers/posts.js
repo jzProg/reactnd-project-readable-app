@@ -9,3 +9,8 @@ export default function posts(state = {}, action) {
   default: return state;
   }
 }
+
+// posts Selector
+export function getPosts(posts) {
+  return Object.values(posts).filter(post => !post.deleted);
+}

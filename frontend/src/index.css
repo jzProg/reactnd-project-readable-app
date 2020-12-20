@@ -54,3 +54,34 @@ code {
 .fullWidthContainer {
   width: 100%;
 }
+
+.postBody {
+  border-style: solid;
+  border-radius: 5px;
+  border-color: gray;
+  padding: 1%;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.control-icon {
+  margin-left: 1%;
+  cursor: pointer;
+}
+
+.commentContainer {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.commentBody {
+  border-style: solid;
+  border-radius: 5px;
+  border-color: gray;
+  width: 90%;
+  padding: 1%;
+}
