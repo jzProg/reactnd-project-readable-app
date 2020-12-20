@@ -1,7 +1,7 @@
 import React from 'react';
 import Moment from 'react-moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp, faThumbsDown, faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 function Post({ post, onSelect }) {
 
@@ -15,6 +15,8 @@ function Post({ post, onSelect }) {
       <span style={{ fontSize: '80%'}} className='commentDiv'>{ post.commentCount} comments | { post.voteScore} votes</span>
       <FontAwesomeIcon icon={faThumbsUp} size="sm" style={{ color: 'green', marginLeft: '1%', cursor: 'pointer'}}/>
       <FontAwesomeIcon icon={faThumbsDown} size="sm" style={{ color: 'red', marginLeft: '1%', cursor: 'pointer'}}/>
+      <FontAwesomeIcon icon={faEdit} size="sm" style={{ color: 'white', marginLeft: '1%', cursor: 'pointer'}}/>
+      <FontAwesomeIcon icon={faTrashAlt} size="sm" style={{ color: 'red', marginLeft: '1%', cursor: 'pointer'}}/>
     </div>
     )
 }

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
-import AddComment from './modals/AddComment';
 import Post from './Post';
+import Header from './Header';
 
 class PostDetails extends Component {
 
@@ -22,11 +22,13 @@ class PostDetails extends Component {
     const post = posts.filter(post => post.id === postId && post.category === category)?.[0];
 
     return (
-      <>
-       { post && (<Post post={post} />) }
-       <AddComment show={modalShow} onHide={() => this.setModalShow(false)}/>
-       <Button variant="primary" onClick={() => this.setModalShow(true)}>ADD NEW COMMENT</Button>
-      </>
+      <div className="postDetailsContainer">
+       <div className="fullWidthContainer">
+         <Header isPost='false'/>
+         { post && (<Post post={post} />) }
+         <div className="postBody">{ post.body }</div>
+       </div>
+      </div>
     )
   }
 }

@@ -21,14 +21,16 @@ class Root extends Component {
     const  { category } = match.params;
     const postsByCategory = category? posts.filter(post => post.category === category) : posts;
 
-    return (<>
-    { this.state.load && (
-      <div style={{ width: '100%'}}>
-        <Header categories={categories} onAdd={() => this.toggleModal(true)} selected={category}/>
-        <PostList posts={postsByCategory}/>
-      </div>
-     )}
-   </>)
+    return (
+       <header className="Root-header">
+        { this.state.load && (
+          <div className="fullWidthContainer">
+            <Header categories={categories} selected={category}/>
+            <PostList posts={postsByCategory}/>
+          </div>
+         )}
+      </header>
+    )
   }
 }
 
