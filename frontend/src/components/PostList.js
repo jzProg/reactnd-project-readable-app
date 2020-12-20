@@ -4,11 +4,9 @@ import Post from './Post';
 function PostList({ posts, onSelect }) {
 
   return (
-    <ul>
-    { posts.map(post => <li key={post.id} style={{ cursor: 'pointer' }} onClick={() => onSelect(post)}>
-                          <Post post={post}/>
-                         </li>)}
-    </ul>
+    <div className='postListDiv'>
+    { posts.map((post,index) => <Post key={post.id} post={post} onSelect={() => onSelect(post)}/>)}
+    </div>
     )
 }
 

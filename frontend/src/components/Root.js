@@ -38,7 +38,7 @@ class Root extends Component {
 
     return (<>
     { this.state.load && (
-      <div>
+      <div style={{ width: '100%'}}>
         <Header categories={categories} onSelect={this.toCategory}/>
         <PostList posts={posts} onSelect={this.toPost}/>
         <NewPost show={this.state.showNewPostModal} onHide={() => this.toggleModal(false)}/>
