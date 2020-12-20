@@ -32,7 +32,7 @@ class PostDetails extends Component {
       { this.state.load && (
        <div className="fullWidthContainer">
          <Header isPost='false'/>
-         <Post post={post} />
+         <Post post={post} fullDate="true"/>
          <div className="postBody">{ post.body }</div>
          <div className="commentContainer">
           {comments.map(comment => <Comment commentInfo={comment}/>)}

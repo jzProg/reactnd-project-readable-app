@@ -1,8 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Post from './Post';
+import Sort from './Sort';
 
-function PostList({ posts, history }) {
+function PostList({ posts, onSort, history }) {
 
   function toPost(post) {
     const { category, id } = post;
@@ -11,7 +12,11 @@ function PostList({ posts, history }) {
 
   return (
     <div className='postListDiv'>
-    { posts.map((post,index) => <Post key={post.id} post={post} onSelect={() => toPost(post)}/>)}
+     { posts.length ?
+       (<Sort onSort={onSort}/>)
+        :
+       (<h4 style={{ margin: '1%'}}> No posts for this category...</h4>) }
+     { posts.map((post,index) => <Post key={post.id} post={post} onSelect={() => toPost(post)}/>)}
     </div>
     )
 }
