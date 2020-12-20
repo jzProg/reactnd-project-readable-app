@@ -1,10 +1,16 @@
-import { SET_POSTS } from '../actions/posts';
+import { SET_POSTS, ADD_NEW_POST } from '../actions/posts';
 
 export default function posts(state = {}, action) {
   switch(action.type) {
   case SET_POSTS: return {
     ...state,
     ...action.posts
+  };
+  case ADD_NEW_POST: return {
+    ...state,
+    [action.post.id]: {
+      ...action.post
+    }
   };
   default: return state;
   }

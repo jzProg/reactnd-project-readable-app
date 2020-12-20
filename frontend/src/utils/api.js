@@ -19,3 +19,11 @@ export function fetchCommentsByPost(postId) {
   return fetch(COMMENTS_ENDPOINT.replace('%s', postId), { headers: { 'Authorization': API_TOKEN }})
          .then(res => res.json());
 }
+
+export function createNewPost(post) {
+  return fetch(POSTS_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Authorization': API_TOKEN,'Accept': 'application/json, text/plain, */*', 'Content-Type': 'application/json' },
+          body: JSON.stringify(post)
+        }).then(res => res.json());
+}

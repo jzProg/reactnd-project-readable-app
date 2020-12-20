@@ -1,9 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { addNewPostAction } from '../../actions/shared';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import InputForm from '../InputForm';
 
-function NewPost(props) {
+function NewPost({ items, onHide, dispatch, ...props }) {
+
+  function submit(title, author, text, type) {
+    dispatch(addNewPostAction(title, author, text, type)).then(() => {
+      onHide();
+    });
+  }
 
   return (
     <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
@@ -13,14 +21,14 @@ function NewPost(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-       <InputForm/>
+       <InputForm items={items} onSubmit={submit}/>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button onClick={onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
   )
 
 }
 
-export default NewPost;
+export default connect()(NewPost);

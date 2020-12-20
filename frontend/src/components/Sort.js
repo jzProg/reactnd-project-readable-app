@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt, faSortAmountUp, faStar } from '@fortawesome/free-solid-svg-icons';
-import ControlIcon from './ControlIcon';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 function Sort({ onSort }) {

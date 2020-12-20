@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import InputForm from '../InputForm';
 
-function AddComment(props) {
+function AddComment({ items, onHide, onSubmit, ...props }) {
   return (
     <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>
@@ -12,10 +12,10 @@ function AddComment(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-       <InputForm/>
+       <InputForm tems={items} onSubmit={onSubmit}/>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button onClick={onHide}>Close</Button>
       </Modal.Footer>
   </Modal>
   )

@@ -22,7 +22,7 @@ function Header({ categories, onSelect, onHome, onAdd, category, isPost, history
       { isPost ? (
         <AddComment show={show} onHide={() => setShow(false)}/>
       ) : (
-        <NewPost show={show} onHide={() => setShow(false)}/>
+        <NewPost show={show} onHide={() => setShow(false)} items={categories}/>
       ) }
       </>
     )

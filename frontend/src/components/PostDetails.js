@@ -35,7 +35,7 @@ class PostDetails extends Component {
          <Post post={post} fullDate="true"/>
          <div className="postBody">{ post.body }</div>
          <div className="commentContainer">
-          {comments.map(comment => <Comment commentInfo={comment}/>)}
+          {comments.map(comment => <Comment key={comment.id} commentInfo={comment}/>)}
          </div>
        </div>
        ) }
