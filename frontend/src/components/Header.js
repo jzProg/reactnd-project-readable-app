@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import NavigationBar from './NavigationBar';
 import NewPost from './modals/NewPost';
 
-function Header({ categories, onSelect, onHome, onAdd, history }) {
+function Header({ categories, onSelect, onHome, onAdd, category, history }) {
 
   const [show, setShow] = React.useState(false);
 
@@ -17,7 +17,7 @@ function Header({ categories, onSelect, onHome, onAdd, history }) {
 
   return (
       <>
-      <NavigationBar items={categories} onSelect={toCategory} onHome={toHome} onToggle={() => setShow(true)}/>
+      <NavigationBar items={categories} onSelect={toCategory} onHome={toHome} onToggle={() => setShow(true)} selected={category}/>
       <NewPost show={show} onHide={() => setShow(false)}/>
       </>
     )

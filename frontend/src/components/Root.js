@@ -17,13 +17,15 @@ class Root extends Component {
   }
 
   render() {
-    const { categories, posts } = this.props;
+    const { categories, posts, match } = this.props;
+    const  { category } = match.params;
+    const postsByCategory = category? posts.filter(post => post.category === category) : posts;
 
     return (<>
     { this.state.load && (
       <div style={{ width: '100%'}}>
-        <Header categories={categories} onAdd={() => this.toggleModal(true)}/>
-        <PostList posts={posts}/>
+        <Header categories={categories} onAdd={() => this.toggleModal(true)} selected={category}/>
+        <PostList posts={postsByCategory}/>
       </div>
      )}
    </>)

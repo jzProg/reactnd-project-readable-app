@@ -37,3 +37,7 @@ code {
   border-style: none none solid none;
   border-color: gray;
 }
+
+.nav-pills .nav-link.active {
+  background-color: lightgray !important;
+}
