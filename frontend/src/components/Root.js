@@ -2,20 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './Header';
 import PostList from './PostList';
-import { fetchInitialData } from '../actions/shared';
 import { getPosts } from '../reducers/posts';
 
 class Root extends Component {
 
   state = {
-    load: false,
     sortByDate: true,
-  }
-
-  componentDidMount() {
-    this.props.dispatch(fetchInitialData()).then(() => {
-      this.setState({ load: true });
-    });
   }
 
   sort = (byDate) => {
@@ -31,12 +23,10 @@ class Root extends Component {
 
     return (
        <header className="Root-header">
-        { load && (
-          <div className="fullWidthContainer">
-            <Header categories={categories} selected={category}/>
-            <PostList posts={postsByCategory} onSort={this.sort}/>
-          </div>
-         )}
+        <div className="fullWidthContainer">
+          <Header categories={categories} selected={category}/>
+          <PostList posts={postsByCategory} onSort={this.sort}/>
+        </div>
       </header>
     )
   }
