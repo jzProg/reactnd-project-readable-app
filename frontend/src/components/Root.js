@@ -3,13 +3,11 @@ import { connect } from 'react-redux';
 import Header from './Header';
 import PostList from './PostList';
 import NewPost from './modals/NewPost';
-import Button from 'react-bootstrap/Button';
 import { fetchInitialData } from '../actions/shared';
 
 class Root extends Component {
 
   state = {
-    showNewPostModal: false,
     load: false
   }
 
@@ -19,25 +17,14 @@ class Root extends Component {
     });
   }
 
-  toggleModal = (flag) => {
-    this.setState({ showNewPostModal: flag });
-  }
-
-  toPost = (post) => {
-    const { category, id } = post;
-    this.props.history.push(`/${category}/${id}`);
-  }
-
   render() {
     const { categories, posts } = this.props;
 
     return (<>
     { this.state.load && (
       <div style={{ width: '100%'}}>
-        <Header categories={categories}/>
-        <PostList posts={posts} onSelect={this.toPost}/>
-        <NewPost show={this.state.showNewPostModal} onHide={() => this.toggleModal(false)}/>
-        <Button variant="primary" onClick={() => this.toggleModal(true)}>ADD NEW POST</Button>
+        <Header categories={categories} onAdd={() => this.toggleModal(true)}/>
+        <PostList posts={posts}/>
       </div>
      )}
    </>)

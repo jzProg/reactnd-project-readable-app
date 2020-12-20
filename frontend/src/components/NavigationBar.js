@@ -1,7 +1,8 @@
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import Button from 'react-bootstrap/Button';
 
-function NavigationBar({ items, onSelect, onHome }) {
+function NavigationBar({ items, onSelect, onHome, onToggle }) {
 
   return (
     <Navbar bg="light" expand="lg">
@@ -11,6 +12,11 @@ function NavigationBar({ items, onSelect, onHome }) {
       <Nav className="mr-auto">
         { items.map(item => <Nav.Link key={item.name} onClick={() => onSelect(item)}>{item.name}</Nav.Link>)}
       </Nav>
+      <Nav>
+      <Nav.Link>
+       <Button variant="primary" onClick={onToggle}>ADD NEW POST</Button>
+      </Nav.Link>
+    </Nav>
     </Navbar.Collapse>
   </Navbar>
   )

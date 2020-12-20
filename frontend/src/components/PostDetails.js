@@ -17,7 +17,7 @@ class PostDetails extends Component {
 
   render() {
     const { posts, match } = this.props;
-    const { modalShow, setModalShow } = this.state;
+    const { modalShow } = this.state;
     const  { postId, category } = match.params;
     const post = posts.filter(post => post.id === postId && post.category === category)?.[0];
 

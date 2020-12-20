@@ -13,7 +13,7 @@ class Category extends Component {
     return (
       <div style={{ width: '100%' }}>
         <Header categories={categories}/>
-        <PostList posts={postsByCategory} onSelect={this.toPost}/>
+        <PostList posts={postsByCategory}/>
       </div>
     )
   }
