@@ -13,7 +13,7 @@ class App extends Component {
       <div className="App">
         <LoadingBar/>
         <header className="App-header">
-         <Route path="/:category?" component={Root}/>
+         <Route exact path="/:category?" component={Root}/>
          <Route exact path='/:category/:postId' component={PostDetails}/>
         </header>
       </div>
