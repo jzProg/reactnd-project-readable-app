@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from './Header';
 import PostList from './PostList';
@@ -24,10 +23,6 @@ class Root extends Component {
     this.setState({ showNewPostModal: flag });
   }
 
-  toCategory = (category) => {
-    this.props.history.push(`/${category.path}`);
-  }
-
   toPost = (post) => {
     const { category, id } = post;
     this.props.history.push(`/${category}/${id}`);
@@ -39,7 +34,7 @@ class Root extends Component {
     return (<>
     { this.state.load && (
       <div style={{ width: '100%'}}>
-        <Header categories={categories} onSelect={this.toCategory}/>
+        <Header categories={categories}/>
         <PostList posts={posts} onSelect={this.toPost}/>
         <NewPost show={this.state.showNewPostModal} onHide={() => this.toggleModal(false)}/>
         <Button variant="primary" onClick={() => this.toggleModal(true)}>ADD NEW POST</Button>
@@ -56,4 +51,4 @@ function mapStateToProps({ categories, posts }) {
   }
 }
 
-export default connect(mapStateToProps)(withRouter(Root));
+export default connect(mapStateToProps)(Root);

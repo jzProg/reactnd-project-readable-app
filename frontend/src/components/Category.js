@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PostList from './PostList';
+import Header from './Header';
 
 class Category extends Component {
 
-  state = {
-
-  }
-
   render() {
-    const { posts, match } = this.props;
+    const { posts, categories, match } = this.props;
     const  { category } = match.params;
     const postsByCategory = posts.filter(post => post.category === category);
 
     return (
-      <div>
+      <div style={{ width: '100%' }}>
+        <Header categories={categories}/>
         <PostList posts={postsByCategory} onSelect={this.toPost}/>
       </div>
     )
@@ -23,10 +20,11 @@ class Category extends Component {
 
 }
 
-function mapStateToProps({ posts }) {
+function mapStateToProps({ posts, categories }) {
   return {
+    categories: Object.values(categories),
     posts: Object.values(posts)
   }
 }
 
-export default connect(mapStateToProps)(withRouter(Category));
+export default connect(mapStateToProps)(Category);
