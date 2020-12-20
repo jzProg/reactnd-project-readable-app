@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './Header';
 import PostList from './PostList';
-import NewPost from './modals/NewPost';
 import { fetchInitialData } from '../actions/shared';
 
 class Root extends Component {
