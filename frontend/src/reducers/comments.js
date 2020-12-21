@@ -2,7 +2,6 @@ import { SET_COMMENTS, ADD_NEW_COMMENT, VOTE_COMMENT, DELETE_COMMENT, EDIT_COMME
 import { DELETE_POST } from '../actions/posts';
 
 export default function comments(state = {}, action) {
-  console.log(action);
   switch(action.type) {
   case SET_COMMENTS: return {
     ...action.comments // replace comments

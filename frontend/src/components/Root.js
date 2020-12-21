@@ -25,7 +25,7 @@ class Root extends Component {
        <header className="Root-header">
         <div className="fullWidthContainer">
           <Header categories={categories} selected={category}/>
-          <PostList posts={sortedList} onSort={this.sort}/>
+          <PostList posts={sortedList} onSort={this.sort} activeSorting={sortByDate ? 'by date' : 'by score'}/>
         </div>
       </header>
     )

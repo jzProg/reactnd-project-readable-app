@@ -2,12 +2,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt, faSortAmountUp, faStar } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from 'react-bootstrap/Dropdown';
 
-function Sort({ onSort }) {
+function Sort({ onSort, activeSorting }) {
   return (
     <>
       <Dropdown style={{margin: '1%'}}>
         <Dropdown.Toggle variant="success" id="dropdown">
-        <FontAwesomeIcon icon={faSortAmountUp}/>
+        <FontAwesomeIcon icon={faSortAmountUp}/> {activeSorting}
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.Item onClick={() => onSort(true)}><FontAwesomeIcon icon={faCalendarAlt}/> date</Dropdown.Item>
