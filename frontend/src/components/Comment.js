@@ -7,7 +7,7 @@ function Comment({ commentInfo }) {
   return (
       <div className="commentBody">
        <h4>
-        <span style={{ color: 'orange' }}>{ commentInfo.author }</span>
+        <span style={{ color: 'orange' }}>{ commentInfo.author } </span>
          says:
        </h4>
        <span>

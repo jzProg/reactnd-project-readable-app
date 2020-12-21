@@ -2,23 +2,23 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function InputForm({ items, onSubmit }) {
+function InputForm({ items, onSubmit, disableTitle }) {
 
   function submit(event) {
     event.preventDefault();
-    const title = document.getElementById('titleControl').value;
+    const title = document.getElementById('titleControl')?.value;
     const author = document.getElementById('authorControl').value;
     const text = document.getElementById('textControl').value;
     const type = document.getElementById('typeControl')?.value;
-    onSubmit(title, author, text, type);
+    onSubmit(author, text, title, type);
   }
 
   return (
     <Form>
-      <Form.Group>
+      { !disableTitle && (<Form.Group>
         <Form.Label>Title</Form.Label>
         <Form.Control id="titleControl" type="text" placeholder="Title" />
-      </Form.Group>
+      </Form.Group>) }
       <Form.Group>
         <Form.Label>Author</Form.Label>
         <Form.Control id="authorControl" type="text" placeholder="anonymous" />

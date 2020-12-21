@@ -4,7 +4,7 @@ import NavigationBar from './NavigationBar';
 import NewPost from './modals/NewPost';
 import AddComment from './modals/AddComment';
 
-function Header({ categories, onSelect, onHome, onAdd, category, isPost, history }) {
+function Header({ categories, onSelect, onHome, onAdd, category, isPost, postId,  history }) {
 
   const [show, setShow] = React.useState(false);
 
@@ -20,7 +20,7 @@ function Header({ categories, onSelect, onHome, onAdd, category, isPost, history
       <>
       <NavigationBar items={categories} onSelect={toCategory} onHome={toHome} onToggle={() => setShow(true)} selected={category} isPost={isPost}/>
       { isPost ? (
-        <AddComment show={show} onHide={() => setShow(false)}/>
+        <AddComment show={show} onHide={() => setShow(false)} postId={postId}/>
       ) : (
         <NewPost show={show} onHide={() => setShow(false)} items={categories}/>
       ) }

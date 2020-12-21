@@ -60,6 +60,7 @@ function getAll (token) {
     const posts = getData(token)
     let keys = Object.keys(posts)
     let filtered_keys = keys.filter(key => !posts[key].deleted)
+    console.log(filtered_keys.map(key => posts[key]))
     res(filtered_keys.map(key => posts[key]))
   })
 }

@@ -7,7 +7,7 @@ import InputForm from '../InputForm';
 
 function NewPost({ items, onHide, dispatch, ...props }) {
 
-  function submit(title, author, text, type) {
+  function submit(author, text, title, type) {
     dispatch(addNewPostAction(title, author, text, type)).then(() => {
       onHide();
     });

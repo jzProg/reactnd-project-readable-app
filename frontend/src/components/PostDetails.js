@@ -31,7 +31,7 @@ class PostDetails extends Component {
       <div className="postDetailsContainer">
       { this.state.load && (
        <div className="fullWidthContainer">
-         <Header isPost='false'/>
+         <Header isPost='false' postId={postId}/>
          <Post post={post} fullDate="true"/>
          <div className="postBody">{ post.body }</div>
          <div className="commentContainer">

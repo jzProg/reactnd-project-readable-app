@@ -1,4 +1,5 @@
 import { SET_POSTS, ADD_NEW_POST } from '../actions/posts';
+import { ADD_NEW_COMMENT } from '../actions/comments';
 
 export default function posts(state = {}, action) {
   switch(action.type) {
@@ -12,6 +13,13 @@ export default function posts(state = {}, action) {
       ...action.post
     }
   };
+  case ADD_NEW_COMMENT: return {
+     ...state,
+     [action.comment.parentId]: {
+       ...state[action.comment.parentId],
+       commentCount: state[action.comment.parentId].commentCount + 1
+     }
+  }
   default: return state;
   }
 }
