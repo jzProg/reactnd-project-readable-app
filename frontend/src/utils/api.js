@@ -55,6 +55,20 @@ export function voteForComment(commentId, vote) {
         }).then(res => res.json());
 }
 
+export function deleteExistingPost(postId) {
+  return fetch(`${POSTS_ENDPOINT}\\${postId}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': API_TOKEN,'Accept': 'application/json, text/plain, */*', 'Content-Type': 'application/json' },
+        }).then(res => res.json());
+}
+
+export function deleteExistingComment(commentId) {
+  return fetch(`${NEW_COMMENT_ENDPOINT}\\${commentId}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': API_TOKEN,'Accept': 'application/json, text/plain, */*', 'Content-Type': 'application/json' },
+        }).then(res => res.json());
+}
+
 function transformData(postsObj) {
   const posts = postsObj.reduce((result, item)  => {
     result[item.id] = item;

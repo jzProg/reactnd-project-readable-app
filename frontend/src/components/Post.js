@@ -1,13 +1,17 @@
 import React from 'react';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
-import { votePostAction } from '../actions/shared';
+import { votePostAction, deletePostAction } from '../actions/shared';
 import EditControl from './EditControl';
 
 function Post({ post, fullDate, dispatch, onSelect }) {
 
   function vote(option) {
     dispatch(votePostAction(post.id, option));
+  }
+
+  function remove() {
+    dispatch(deletePostAction(post.id));
   }
 
   return (
@@ -23,7 +27,7 @@ function Post({ post, fullDate, dispatch, onSelect }) {
       </span>
       <br/>
       <span style={{ fontSize: '80%'}} className='commentDiv'>{ post.commentCount} comments | { post.voteScore} votes</span>
-      <EditControl onVote={vote}/>
+      <EditControl onVote={vote} onDelete={remove}/>
     </div>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { voteCommentAction } from '../actions/shared';
+import { voteCommentAction, deleteCommentAction } from '../actions/shared';
 import EditControl from './EditControl';
 import Moment from 'react-moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,6 +10,10 @@ function Comment({ commentInfo, dispatch }) {
 
   function vote(option) {
     dispatch(voteCommentAction(commentInfo.id, option));
+  }
+
+  function remove() {
+    dispatch(deleteCommentAction(commentInfo.id));
   }
 
   return (
@@ -26,7 +30,7 @@ function Comment({ commentInfo, dispatch }) {
        </span>
        <div>{ commentInfo.body }</div>
        <span style={{ fontSize: '80%'}} className='commentDiv'>{ commentInfo.voteScore} votes </span>
-       <EditControl onVote={vote}/>
+       <EditControl onVote={vote} onDelete={remove}/>
       </div>
     )
 }
