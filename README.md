@@ -1,6 +1,6 @@
 # Readable App
 
-My implementation of the `extra` assessment project for Udacity's Redux course.
+My implementation of the `optional` assessment project for Udacity's Redux course.
 
 ## Description
 
