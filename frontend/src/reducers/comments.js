@@ -1,4 +1,4 @@
-import { SET_COMMENTS, ADD_NEW_COMMENT } from '../actions/comments';
+import { SET_COMMENTS, ADD_NEW_COMMENT, VOTE_COMMENT } from '../actions/comments';
 
 export default function comments(state = {}, action) {
   switch(action.type) {
@@ -9,6 +9,13 @@ export default function comments(state = {}, action) {
     ...state,
     [action.comment.id]: {
       ...action.comment
+    }
+  };
+  case VOTE_COMMENT: return {
+    ...state,
+    [action.commentId]: {
+      ...state[action.commentId],
+      voteScore: action.vote === 'upVote' ? state[action.commentId].voteScore + 1 : state[action.commentId].voteScore - 1
     }
   };
   default: return state;

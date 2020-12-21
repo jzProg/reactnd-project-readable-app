@@ -3,11 +3,13 @@ import {
   fetchAllPosts,
   fetchCommentsByPost,
   createNewPost,
-  createNewComment
+  createNewComment,
+  voteForPost,
+  voteForComment
 } from '../utils/api';
-import { setPosts, addNewPost } from '../actions/posts';
+import { setPosts, addNewPost, votePost } from '../actions/posts';
 import { setCategories } from '../actions/categories';
-import { setComments, addNewComment } from '../actions/comments';
+import { setComments, addNewComment, voteComment } from '../actions/comments';
 import { showLoading, hideLoading } from 'react-redux-loading';
 
 export function fetchInitialData() {
@@ -55,6 +57,28 @@ export function addNewCommentAction(author, text, postId) {
            .then(comment => {
             dispatch(hideLoading());
             dispatch(addNewComment(comment));
+          });
+    }
+}
+
+export function voteCommentAction(commentId, vote) {
+  return (dispatch) => {
+    dispatch(showLoading());
+    return voteForComment(commentId, vote)
+           .then(() => {
+            dispatch(hideLoading());
+            dispatch(voteComment(commentId, vote));
+          });
+    }
+}
+
+export function votePostAction(postId, vote) {
+  return (dispatch) => {
+    dispatch(showLoading());
+    return voteForPost(postId, vote)
+           .then(() => {
+            dispatch(hideLoading());
+            dispatch(votePost(postId, vote));
           });
     }
 }

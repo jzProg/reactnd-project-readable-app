@@ -39,6 +39,22 @@ export function createNewComment(comment) {
         }).then(res => res.json());
 }
 
+export function voteForPost(postId, vote) {
+  return fetch(`${POSTS_ENDPOINT}\\${postId}`, {
+          method: 'POST',
+          headers: { 'Authorization': API_TOKEN,'Accept': 'application/json, text/plain, */*', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ option: vote })
+        }).then(res => res.json());
+}
+
+export function voteForComment(commentId, vote) {
+  return fetch(`${NEW_COMMENT_ENDPOINT}\\${commentId}`, {
+          method: 'POST',
+          headers: { 'Authorization': API_TOKEN,'Accept': 'application/json, text/plain, */*', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ option: vote })
+        }).then(res => res.json());
+}
+
 function transformData(postsObj) {
   const posts = postsObj.reduce((result, item)  => {
     result[item.id] = item;

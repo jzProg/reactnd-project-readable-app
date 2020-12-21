@@ -1,10 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { voteCommentAction } from '../actions/shared';
 import EditControl from './EditControl';
 import Moment from 'react-moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReply } from '@fortawesome/free-solid-svg-icons';
 
-function Comment({ commentInfo }) {
+function Comment({ commentInfo, dispatch }) {
+
+  function vote(option) {
+    dispatch(voteCommentAction(commentInfo.id, option));
+  }
 
   return (
       <div className="commentBody">
@@ -20,9 +26,9 @@ function Comment({ commentInfo }) {
        </span>
        <div>{ commentInfo.body }</div>
        <span style={{ fontSize: '80%'}} className='commentDiv'>{ commentInfo.voteScore} votes </span>
-       <EditControl/>
+       <EditControl onVote={vote}/>
       </div>
     )
 }
 
-export default Comment;
+export default connect()(Comment);
