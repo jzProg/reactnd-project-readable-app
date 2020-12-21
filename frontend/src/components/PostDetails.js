@@ -16,10 +16,23 @@ class PostDetails extends Component {
 
   componentDidMount() {
     const { dispatch, match } = this.props;
-    const { postId } = match.params;
-    dispatch(fetchCommentData(postId)).then(() => {
-      this.setState({ load: true });
-    });
+    const { postId, category } = match.params;
+    if (!postId || !this.postExists(postId, category)) this.toHome();
+    else {
+      dispatch(fetchCommentData(postId)).then(() => {
+        this.setState({ load: true });
+      });
+    }
+  }
+
+  postExists(postId, category) {
+    const { posts } = this.props;
+    return posts.filter(post => post.id === postId && post.category === category).length;
+  }
+
+  toHome() {
+    const { history } = this.props;
+    history.push('/');
   }
 
   render() {
