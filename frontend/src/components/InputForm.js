@@ -10,8 +10,7 @@ function InputForm({ items, onSubmit, disableTitle }) {
     event.preventDefault();
     event.stopPropagation();
     setValidated(true);
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) return;
+    if (!event.currentTarget.checkValidity()) return;
     const title = document.getElementById('titleControl')?.value;
     const author = document.getElementById('authorControl').value;
     const text = document.getElementById('textControl').value;

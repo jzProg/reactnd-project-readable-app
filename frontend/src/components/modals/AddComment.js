@@ -15,7 +15,7 @@ function AddComment({ items, onHide, dispatch, postId, ...props }) {
   }
 
   return (
-    <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+    <Modal {...props} onHide={onHide} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           <b>New Comment</b>
