@@ -35,7 +35,7 @@ function InputForm({ items, onSubmit, disableTitle, disableAuthor, prepopulatedI
       { items && (<Form.Group>
         <Form.Label>Type</Form.Label>
         <Form.Control as="select" id="typeControl">
-          {items.map(item => <option id={item.name}>{ item.name }</option>)}
+          {items.map(item => <option key={item.name}>{ item.name }</option>)}
         </Form.Control>
       </Form.Group>) }
       <Button variant="primary" type="submit">
