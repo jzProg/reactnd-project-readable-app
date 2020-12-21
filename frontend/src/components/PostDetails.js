@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCommentsByPost } from '../reducers/comments';
 import { getPosts } from '../reducers/posts';
@@ -39,7 +39,10 @@ class PostDetails extends Component {
     const { posts, comments, match } = this.props;
     const { postId, category } = match.params;
     const post = posts.filter(post => post.id === postId && post.category === category)?.[0];
-
+    if (!post) {
+      return <Redirect to='/'/>
+    }
+    
     return (
       <div className="postDetailsContainer">
       { this.state.load && (

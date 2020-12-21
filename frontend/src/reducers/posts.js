@@ -1,4 +1,4 @@
-import { SET_POSTS, ADD_NEW_POST, VOTE_POST, DELETE_POST } from '../actions/posts';
+import { SET_POSTS, ADD_NEW_POST, VOTE_POST, DELETE_POST, EDIT_POST } from '../actions/posts';
 import { ADD_NEW_COMMENT } from '../actions/comments';
 
 export default function posts(state = {}, action) {
@@ -32,6 +32,14 @@ export default function posts(state = {}, action) {
     [action.postId]: {
       ...state[action.postId],
       deleted: true
+    }
+  };
+  case EDIT_POST: return {
+    ...state,
+    [action.post.id]: {
+      ...state[action.post.id],
+      title: action.post.title,
+      body: action.post.body
     }
   };
   default: return state;

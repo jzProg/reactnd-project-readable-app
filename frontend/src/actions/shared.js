@@ -7,11 +7,13 @@ import {
   voteForPost,
   voteForComment,
   deleteExistingPost,
-  deleteExistingComment
+  deleteExistingComment,
+  editExistingPost,
+  editExistingComment
 } from '../utils/api';
-import { setPosts, addNewPost, votePost, deletePost } from '../actions/posts';
+import { setPosts, addNewPost, votePost, deletePost, editPost } from '../actions/posts';
 import { setCategories } from '../actions/categories';
-import { setComments, addNewComment, voteComment, deleteComment } from '../actions/comments';
+import { setComments, addNewComment, voteComment, deleteComment, editComment } from '../actions/comments';
 import { showLoading, hideLoading } from 'react-redux-loading';
 
 export function fetchInitialData() {
@@ -103,6 +105,30 @@ export function deleteCommentAction(commentId) {
            .then(() => {
             dispatch(hideLoading());
             dispatch(deleteComment(commentId));
+          });
+    }
+}
+
+export function editPostAction(postId, title, text) {
+  return (dispatch) => {
+    dispatch(showLoading());
+    const newPost = { id: postId, timestamp: new Date().getTime(), title, body: text };
+    return editExistingPost(newPost)
+           .then(() => {
+            dispatch(hideLoading());
+            dispatch(editPost(newPost));
+          });
+    }
+}
+
+export function editCommentAction(commentId, text) {
+  return (dispatch) => {
+    dispatch(showLoading());
+    const newComment = { id: commentId, timestamp: new Date().getTime(), body: text };
+    return editExistingComment(newComment)
+           .then(() => {
+            dispatch(hideLoading());
+            dispatch(editComment(newComment));
           });
     }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function InputForm({ items, onSubmit, disableTitle }) {
+function InputForm({ items, onSubmit, disableTitle, disableAuthor, prepopulatedItem }) {
 
   const [validated, setValidated] = React.useState(false);
 
@@ -12,8 +12,8 @@ function InputForm({ items, onSubmit, disableTitle }) {
     setValidated(true);
     if (!event.currentTarget.checkValidity()) return;
     const title = document.getElementById('titleControl')?.value;
-    const author = document.getElementById('authorControl').value;
-    const text = document.getElementById('textControl').value;
+    const author = document.getElementById('authorControl')?.value;
+    const text = document.getElementById('textControl')?.value;
     const type = document.getElementById('typeControl')?.value;
     onSubmit(author, text, title, type);
   }
@@ -22,15 +22,15 @@ function InputForm({ items, onSubmit, disableTitle }) {
     <Form noValidate validated={validated} onSubmit={submit}>
       { !disableTitle && (<Form.Group>
         <Form.Label>Title</Form.Label>
-        <Form.Control id="titleControl" type="text" placeholder="Title" required/>
+        <Form.Control id="titleControl" type="text" placeholder="Title" defaultValue={prepopulatedItem?.title} required/>
       </Form.Group>) }
-      <Form.Group>
+      { !disableAuthor && (<Form.Group>
         <Form.Label>Author</Form.Label>
         <Form.Control id="authorControl" type="text" placeholder="anonymous" required/>
-      </Form.Group>
+      </Form.Group>) }
       <Form.Group>
         <Form.Label>Text</Form.Label>
-        <Form.Control id="textControl" as="textarea" rows={3} required/>
+        <Form.Control id="textControl" as="textarea" rows={3} defaultValue={prepopulatedItem?.body} required/>
       </Form.Group>
       { items && (<Form.Group>
         <Form.Label>Type</Form.Label>

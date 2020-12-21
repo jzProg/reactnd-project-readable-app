@@ -1,4 +1,4 @@
-import { SET_COMMENTS, ADD_NEW_COMMENT, VOTE_COMMENT, DELETE_COMMENT } from '../actions/comments';
+import { SET_COMMENTS, ADD_NEW_COMMENT, VOTE_COMMENT, DELETE_COMMENT, EDIT_COMMENT } from '../actions/comments';
 
 export default function comments(state = {}, action) {
   switch(action.type) {
@@ -23,6 +23,13 @@ export default function comments(state = {}, action) {
     [action.commentId]: {
       ...state[action.commentId],
       deleted: true
+    }
+  };
+  case EDIT_COMMENT: return {
+    ...state,
+    [action.comment.id]: {
+      ...state[action.comment.id],
+      body: action.comment.body
     }
   };
   default: return state;

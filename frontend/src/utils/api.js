@@ -69,6 +69,24 @@ export function deleteExistingComment(commentId) {
         }).then(res => res.json());
 }
 
+export function editExistingPost(post) {
+  const { id, title, body } = post;
+  return fetch(`${POSTS_ENDPOINT}\\${id}`, {
+          method: 'PUT',
+          headers: { 'Authorization': API_TOKEN,'Accept': 'application/json, text/plain, */*', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, body })
+        }).then(res => res.json());
+}
+
+export function editExistingComment(comment) {
+  const { id, timestamp, body } = comment;
+  return fetch(`${NEW_COMMENT_ENDPOINT}\\${id}`, {
+          method: 'PUT',
+          headers: { 'Authorization': API_TOKEN,'Accept': 'application/json, text/plain, */*', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ timestamp, body })
+        }).then(res => res.json());
+}
+
 function transformData(postsObj) {
   const posts = postsObj.reduce((result, item)  => {
     result[item.id] = item;

@@ -5,8 +5,11 @@ import EditControl from './EditControl';
 import Moment from 'react-moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReply } from '@fortawesome/free-solid-svg-icons';
+import AddComment from './modals/AddComment';
 
 function Comment({ commentInfo, dispatch }) {
+
+  const [show, setShow] = React.useState(false);
 
   function vote(option) {
     dispatch(voteCommentAction(commentInfo.id, option));
@@ -30,7 +33,8 @@ function Comment({ commentInfo, dispatch }) {
        </span>
        <div>{ commentInfo.body }</div>
        <span style={{ fontSize: '80%'}} className='commentDiv'>{ commentInfo.voteScore} votes </span>
-       <EditControl onVote={vote} onDelete={remove}/>
+       <EditControl onVote={vote} onDelete={remove} onEdit={() => setShow(true)}/>
+       <AddComment show={show} onHide={() => setShow(false)} comment={commentInfo}/>
       </div>
     )
 }
