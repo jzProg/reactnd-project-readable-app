@@ -60,7 +60,7 @@ code {
   border-radius: 5px;
   border-color: gray;
   padding: 1%;
-  width: 60%;
+  width: 50%;
   margin: 0 auto;
 }
 
@@ -70,7 +70,7 @@ code {
 }
 
 .commentContainer {
-  width: 60%;
+  width: 50%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -79,9 +79,14 @@ code {
 }
 
 .commentBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   border-style: solid;
   border-radius: 5px;
   border-color: gray;
   width: 90%;
-  padding: 1%;
+  padding: 2%;
+  margin-top: 1%;
 }

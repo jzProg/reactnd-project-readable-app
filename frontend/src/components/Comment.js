@@ -1,11 +1,14 @@
 import React from 'react';
 import EditControl from './EditControl';
 import Moment from 'react-moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faReply } from '@fortawesome/free-solid-svg-icons';
 
 function Comment({ commentInfo }) {
 
   return (
       <div className="commentBody">
+       <FontAwesomeIcon icon={faReply} size="sm" style={{ alignSelf: 'flex-start' }}/>
        <h4>
         <span style={{ color: 'orange' }}>{ commentInfo.author } </span>
          says:
@@ -16,7 +19,7 @@ function Comment({ commentInfo }) {
         </i>
        </span>
        <div>{ commentInfo.body }</div>
-       <span style={{ fontSize: '80%'}} className='commentDiv'>{ commentInfo.voteScore} votes</span>
+       <span style={{ fontSize: '80%'}} className='commentDiv'>{ commentInfo.voteScore} votes </span>
        <EditControl/>
       </div>
     )
